@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="./demo0.css"/>
 </head>
 <body>
-    <div class="start-date"></div>
-    <button id="openPicker">打开</button>
     <script src="./node_modules/prefix-umd/index.js"></script>
     <script src="./index.js"></script>
     <script>
@@ -32,26 +30,21 @@
             }
 
             var $picker = new SimplePicker({
-                            el: '.start-date',
                             autoHide: true,
                             itemHeight: 36,
                             data: dataset,
+                            default :[1, 2],
                             onChange: function (res) {
                                 console.log(res);
                             },
                             onChangeEnd: function(res){
                                 console.log(res);
+                            },
+                            onConfirm : function (res) {
+                                console.log(res);
                             }
                          })
-
-            openPicker.onclick = function() {
-                console.log(dataset)
-                $picker.default = [1, 2];
-                $picker.open();
-                $picker.onConfirm = function (res) {
-                    console.log(res);
-                }
-            }
+            $picker.open();
         })();
     </script>
 </body>

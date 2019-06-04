@@ -1,0 +1,106 @@
+.picker-component{
+
+}
+
+/* 遮罩 */
+.picker-component .pk-cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    visibility: hidden;
+    opacity: 0;
+    transition: .6s
+}
+.pk-cover.pc-show{
+    visibility: visible;
+    opacity: .5
+}
+.pk-cover.pc-show{
+    transition: .5s
+}
+
+/* 组件 */
+.pk-target {
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    transition: .5s
+}
+.pk-target.pc-show {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.pk-target .pt-header {
+    position: relative;
+    background-color: #f2f2f4;
+    height: 40px;
+    line-height: 40px;
+    color: #007af0;
+    font-size: 17px;
+}
+.pk-target .pt-header .ph-cancel {
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+.pk-target .pt-header .ph-confirm {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+.pk-target .pt-list {
+    position: relative;
+    height: 216px;
+    overflow: hidden;
+    display:flex;
+}
+.pk-target .pt-list .pl-col{
+    flex:1;
+    height: 100%;
+    position: relative;
+}
+.pk-target .pt-list .pl-col ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.pk-target .pt-list .pl-col ul li{
+    height: 36px;
+    line-height: 36px;
+    box-sizing: border-box;
+    left: 0;
+    color: #000;
+    width: 100%;
+    text-align: center;
+}
+.pk-target .pt-list:before,
+.pk-target .pt-list:after{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 10;
+    background: -webkit-linear-gradient(top, #fff, hsla(0, 0%, 100%, .7));
+    background: linear-gradient(top, #fff, hsla(0, 0%, 100%, .7));
+    border-bottom: 1px solid #ddd;
+    pointer-events: none
+}
+.pk-target .pt-list:after {
+    top: auto;
+    bottom: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: none;
+    background: -webkit-linear-gradient(bottom, #fff, hsla(0, 0%, 100%, .7));
+    background: linear-gradient(bottom, #fff, hsla(0, 0%, 100%, .7))
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <link rel="stylesheet" href="./demo0.css"/>
+</head>
+<body>
+    <div class="start-date"></div>
+    <button id="openPicker">打开</button>
+    <script src="./node_modules/prefix-umd/index.js"></script>
+    <script src="./index.js"></script>
+    <script>
+        (function() {
+            var dataset = [];
+            //加入月份
+            dataset.push([]);
+            for(var i=1;i<=12;i++){
+                dataset[0].push({
+                    title:i+'月',
+                    value:i
+                })
+            }
+            //加入日期
+            dataset.push([]);
+            for(var i=1;i<=31;i++){
+                dataset[1].push({
+                    title:i+'日',
+                    value:i
+                })
+            }
+
+            var $picker = new SimplePicker({
+                            el: '.start-date',
+                            autoHide: true,
+                            itemHeight: 36,
+                            data: dataset,
+                            onChange: function (res) {
+                                console.log(res);
+                            },
+                            onChangeEnd: function(res){
+                                console.log(res);
+                            }
+                         })
+
+            openPicker.onclick = function() {
+                console.log(dataset)
+                $picker.default = [1, 2];
+                $picker.open();
+                $picker.onConfirm = function (res) {
+                    console.log(res);
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

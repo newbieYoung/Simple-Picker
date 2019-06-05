@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>示例一</title>
     <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <link rel="stylesheet" href="./template0.css"/>
     <link rel="stylesheet" href="./demo0.css"/>
 </head>
 <body>
@@ -35,16 +36,19 @@
                             data: dataset,
                             default :[1, 2],
                             onChange: function (res) {
-                                console.log(res);
+                                //console.log('onChange');
+                                //console.log(res);
                             },
                             onChangeEnd: function(res){
-                                console.log(res);
+                                //console.log('onChangeEnd');
+                                //console.log(res);
                             },
                             onConfirm : function (res) {
-                                console.log(res);
+                                //console.log('onConfirm');
+                                //console.log(res);
                             }
                          })
-            $picker.open();
+            //$picker.open();
         })();
     </script>
 </body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>示例二</title>
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <link rel="stylesheet" href="./template0.css"/>
+</head>
+<body>
+<script src="./node_modules/prefix-umd/index.js"></script>
+<script src="./index.js"></script>
+<script>
+    (function() {
+        var dataset = [];
+        //加入日期
+        dataset.push([{
+            title:'4月7日 周日',
+            value:'040707'
+        },{
+            title:'4月8日 周一',
+            value:'040801'
+        },{
+            title:'4月9日 周二',
+            value:'040902'
+        },{
+            title:'今天',
+            value:'041003'
+        },{
+            title:'4月11日 周四',
+            value:'041104'
+        },{
+            title:'4月12日 周五',
+            value:'041205'
+        },{
+            title:'4月13日 周六',
+            value:'041306'
+        }]);
+
+        var $picker = new SimplePicker({
+            itemHeight: 36,
+            data: dataset,
+            default :['041003'],
+            onChangeEnd: function(res){
+                console.log(res);
+            },
+            onConfirm : function (res) {
+                console.log(res);
+            }
+        })
+    })();
+</script>
+</body>
+</html>

@@ -50,6 +50,7 @@
      * default 默认值
      * result 选取值
      * itemHeight 选项高度
+     * itemStyle 选项样式
      * onChangeEnd 选项已经改变监听
      * onConfirm 确定监听
      */
@@ -67,6 +68,7 @@
         this.id = 'picker-'+new Date().getTime();
         this.itemHeight = config.itemHeight || 36;
         this.listHeight = config.listHeight || this.itemHeight * 6;
+        this.itemStyle = config.itemStyle || null;
 
         this.init();
     };
@@ -128,12 +130,24 @@
     //渲染选项列表数据
     SimplePicker.prototype.renderCols = function(){
         var html = '';
+        var cssTexts = [];
+        if(this.itemStyle){
+            for(var i=0;i<this.itemStyle.length;i++){
+                cssTexts[i] = '';
+                var styles = this.itemStyle[i];
+                for(var j = 0;j<styles.length;j++){
+                    cssTexts[i] += styles[j].property+':'+styles[j].value+';';
+                }
+            }
+        }
+
         for(var i=0;i<this.data.length;i++){
             var col = this.data[i];
+            var cssText = cssTexts[i] || '';
             html += '<div class="pl-col">';
             html += '<ul>';
             for(var j=0;j<col.length;j++){
-                html += '<li>'+col[j].title+'</li>'
+                html += '<li style="'+cssText+'">'+col[j].title+'</li>'
             }
             html += '</ul>';
             html += '</div>';

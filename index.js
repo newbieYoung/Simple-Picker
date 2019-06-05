@@ -69,6 +69,7 @@
         this.itemHeight = config.itemHeight || 36;
         this.listHeight = config.listHeight || this.itemHeight * 6;
         this.itemStyle = config.itemStyle || null;
+        this.zIndex = config.zIndex || 1000;
 
         this.init();
     };
@@ -91,6 +92,7 @@
 
         this.$target = document.createElement('div');
         this.$target.id = this.id;
+        this.$target.style.zIndex = this.zIndex;
         this.$target.innerHTML = html;
         document.body.appendChild(this.$target);
     };

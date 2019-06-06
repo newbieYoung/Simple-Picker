@@ -30,29 +30,31 @@
             }
 
             var $picker = new SimplePicker({
-                            itemHeight: 36,
-                            data: dataset,
-                            default :[1, 2],
-                            itemStyle:[[{
-                                'property':'padding-right',
-                                'value':'33px'
-                            },{
-                                'property':'text-align',
-                                'value':'right'
-                            }],[{
-                                'property':'padding-left',
-                                'value':'33px'
-                            },{
-                                'property':'text-align',
-                                'value':'left'
-                            }]],
-                            onChangeEnd: function(res){
-                                console.log(res);
-                            },
-                            onConfirm : function (res) {
-                                console.log(res);
-                            }
-                         })
+                itemHeight: 36,
+                data: dataset,
+                default :[1, 2],
+                itemStyle:[[{
+                    'property':'padding-right',
+                    'value':'33px'
+                },{
+                    'property':'text-align',
+                    'value':'right'
+                }],[{
+                    'property':'padding-left',
+                    'value':'33px'
+                },{
+                    'property':'text-align',
+                    'value':'left'
+                }]],
+                onChangeEnd: function(res){
+                    console.log(res);
+                },
+                onConfirm : function (res) {
+                    console.log(res);
+                }
+            })
+
+            $picker.show();
         })();
     </script>
 </body>

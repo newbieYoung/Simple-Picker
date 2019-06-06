@@ -125,7 +125,6 @@
             this.moveListener(i,offsetHeight);
         }
 
-        this.show();
         this.btnEvent();
     };
 

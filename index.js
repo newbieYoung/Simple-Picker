@@ -49,7 +49,10 @@
      * data 数据
      * default 默认值
      * result 选取值
+     * headVisible 是否显示头部按钮区域
+     * maskVisible 是否显示遮罩
      * itemHeight 选项高度
+     * listHeight 选项列表高度
      * itemStyle 选项样式
      * onChangeEnd 选项已经改变监听
      * onConfirm 确定监听
@@ -70,6 +73,8 @@
         this.listHeight = config.listHeight || this.itemHeight * 6;
         this.itemStyle = config.itemStyle || null;
         this.zIndex = config.zIndex || 1000;
+        this.headVisible = config.headVisible != null ? config.headVisible : true;
+        this.maskVisible = config.maskVisible != null ? config.maskVisible : true;
 
         this.init();
     };
@@ -78,9 +83,13 @@
     SimplePicker.prototype.constructor = function(){
         var html = '';
         html += '<div class="picker-component">';
-        html += '<div class="pk-cover"></div>';
+        if(this.maskVisible){
+            html += '<div class="pk-cover"></div>';
+        }
         html += '<div class="pk-target">';
-        html += '<div class="pt-header"><span class="ph-cancel">取消</span><span class="ph-confirm">确定</span></div>';
+        if(this.headVisible){
+            html += '<div class="pt-header"><span class="ph-cancel">取消</span><span class="ph-confirm">确定</span></div>';
+        }
         html += '<div class="pt-list">';
         html += '<div class="pl-top-cover"></div>';
         html += this.renderCols();
@@ -100,11 +109,15 @@
     //初始化
     SimplePicker.prototype.init = function(){
         this.constructor();
-
-        this.$cover = qs('#'+this.id+' .pk-cover');
         this.$picker = qs('#'+this.id+' .pk-target');
-        this.$cancel = qs('#'+this.id+' .ph-cancel');
-        this.$confirm = qs('#'+this.id+' .ph-confirm');
+
+        if(this.maskVisible){
+            this.$cover = qs('#'+this.id+' .pk-cover');
+        }
+        if(this.headVisible){
+            this.$cancel = qs('#'+this.id+' .ph-cancel');
+            this.$confirm = qs('#'+this.id+' .ph-confirm');
+        }
 
         //设置选项列表高度
         this.$list = qs('#'+this.id+' .pt-list');
@@ -122,10 +135,12 @@
         for(var i=0;i<this.data.length;i++){
             var offsetHeight = getIndex(this.default[i], this.data[i]) * this.itemHeight;
             this.setOffset(i,offsetHeight);
-            this.moveListener(i,offsetHeight);
+            this.moveListener(i,offsetHeight);//初始化滑动监听
         }
 
-        this.btnEvent();
+        if(this.headVisible){
+            this.btnEvent();
+        }
     };
 
     //渲染选项列表数据
@@ -157,18 +172,39 @@
         return html;
     };
 
+    //设置列表选项高度
+    SimplePicker.prototype.setListHeight = function(height){
+        this.listHeight = height;
+        this.$list.style.height = this.listHeight+'px';
+
+        //重置上下cover高度
+        var coverHeight = (this.listHeight - this.itemHeight)/2;
+        this.$topCover.style.height = coverHeight+'px';
+        this.$bottomCover.style.height = coverHeight+'px';
+
+        //重置结果偏移高度
+        for(var i=0;i<this.data.length;i++){
+            var offsetHeight = getIndex(this.result[i], this.data[i]) * this.itemHeight;
+            this.setOffset(i,offsetHeight);
+        }
+    };
+
     //显示
     SimplePicker.prototype.show = function(){
         var self = this;
         setTimeout(function () {
-            self.$cover.classList.add('pc-show');
+            if(self.maskVisible){
+                self.$cover.classList.add('pc-show');
+            }
             self.$picker.classList.add('pc-show');
         }, 20);
     };
 
     //隐藏
     SimplePicker.prototype.hide = function(){
-        this.$cover.classList.remove('pc-show');
+        if(self.maskVisible){
+            self.$cover.classList.remove('pc-show');
+        }
         this.$picker.classList.remove('pc-show');
     };
 

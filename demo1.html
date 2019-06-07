@@ -5,6 +5,7 @@
     <title>示例二</title>
     <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
     <link rel="stylesheet" href="./template0.css"/>
+    <link rel="stylesheet" href="./reset.css"/>
 </head>
 <body>
 <script src="./node_modules/prefix-umd/index.js"></script>
@@ -40,6 +41,9 @@
             itemHeight: 36,
             data: dataset,
             default :['041003'],
+            headVisible:false,//无头部
+            maskVisible:false,//无遮罩
+            listHeight:400,//自定义选项列表高度
             onChangeEnd: function(res){
                 console.log(res);
             },
@@ -49,6 +53,11 @@
         })
 
         $picker.show();
+
+        //选项列表区域支持动态改变
+        setTimeout(function(){
+            $picker.setListHeight(350);
+        },2000)
     })();
 </script>
 </body>

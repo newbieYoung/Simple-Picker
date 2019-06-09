@@ -202,8 +202,8 @@
 
     //隐藏
     SimplePicker.prototype.hide = function(){
-        if(self.maskVisible){
-            self.$cover.classList.remove('pc-show');
+        if(this.maskVisible){
+            this.$cover.classList.remove('pc-show');
         }
         this.$picker.classList.remove('pc-show');
     };

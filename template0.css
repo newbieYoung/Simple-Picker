@@ -70,6 +70,8 @@
     margin:0;
     padding:0;
     list-style: none;
+    transition-property: transform;
+    transition-timing-function: ease-out;
 }
 .pk-target .pt-list .pl-col ul li{
     height: 36px;

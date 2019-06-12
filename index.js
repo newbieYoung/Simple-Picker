@@ -20,7 +20,7 @@
     })();
 
     var transformProperty = Prefix.prefix('transform');
-    var transitionProperty = Prefix.prefix('transition');
+    var transitionDurationPro = Prefix.prefix('transitionDuration');
 
     //常用方法名简化
     function on (el, evt, callback) {
@@ -167,7 +167,7 @@
         this.$bottomCover.style.height = coverHeight+'px';
 
         //设置默认值偏移
-        this.$cols = qsa('#'+this.id+' .pl-col');
+        this.$cols = qsa('#'+this.id+' .pl-col ul');
         for(var i=0;i<this.data.length;i++){
             var offsetHeight = getIndex(this.default[i], this.data[i]) * this.itemHeight;
             this.setOffset(i,offsetHeight);
@@ -251,10 +251,10 @@
 
     //设置偏移
     SimplePicker.prototype.setOffset = function(colNo,offsetHeight,isTouchEnd){
-        var time = isTouchEnd ? '.5s' : '0s';
+        var time = isTouchEnd ? .5 : 0;
         var el = this.$cols[colNo];
         var translateY = this.listHeight / 2 - this.itemHeight / 2 - offsetHeight;
-        el.style[transitionProperty] = time;
+        el.style[transitionDurationPro] = time+'s';
         el.style[transformProperty] = 'translateY('+translateY+'px)';
 
         if(isTouchEnd){

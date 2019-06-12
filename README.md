@@ -6,13 +6,15 @@
 
 ### 示例一
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo0.jpg"/>
+<img src="https://raw.githubusercontent.com/newbieYoung/Simple-Picker/master/img/demo0.jpg">
 
 可以扫描二维码体验：
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo0-code.png"/>
+<img src="https://raw.githubusercontent.com/newbieYoung/Simple-Picker/master/img/demo0-code.png">
 
 或者访问以下链接：
+
+[https://newbieyoung.github.io/Simple-Picker/demo0.html](https://newbieyoung.github.io/Simple-Picker/demo0.html)
 
 相关样式及示例代码如下：
 
@@ -111,13 +113,15 @@ $picker.show();
 
 ### 示例二
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1.jpg"/>
+<img src="https://raw.githubusercontent.com/newbieYoung/Simple-Picker/master/img/demo1.jpg">
 
 可以扫描二维码体验：
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1-code.png"/>
+<img src="https://raw.githubusercontent.com/newbieYoung/Simple-Picker/master/img/demo1-code.png">
 
 或者访问以下链接：
+
+[https://newbieyoung.github.io/Simple-Picker/demo1.html](https://newbieyoung.github.io/Simple-Picker/demo1.html)
 
 相关样式及示例代码如下：
 

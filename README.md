@@ -10,7 +10,7 @@
 
 可以扫描二维码体验：
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo0-code.jpg"/>
+<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo0-code.png"/>
 
 或者访问以下链接：
 
@@ -115,7 +115,7 @@ $picker.show();
 
 可以扫描二维码体验：
 
-<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1-code.jpg"/>
+<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1-code.png"/>
 
 或者访问以下链接：
 

@@ -10,11 +10,11 @@
     background-color: #000;
     visibility: hidden;
     opacity: 0;
-    transition: .6s
+    transition: .6s;
 }
 .pk-cover.pc-show{
     visibility: visible;
-    opacity: .5
+    opacity: .5;
 }
 
 /* 组件 */
@@ -27,11 +27,13 @@
     overflow: hidden;
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
-    transition: .5s
+    transition: .5s;
+    visibility: hidden;
 }
 .pk-target.pc-show {
     -webkit-transform: translateY(0);
-    transform: translateY(0)
+    transform: translateY(0);
+    visibility: visible;
 }
 
 .pk-target .pt-header {
@@ -95,4 +97,9 @@
     bottom: 0;
     background: -webkit-linear-gradient(bottom, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6));
     background: linear-gradient(bottom, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6))
+}
+.pk-target .pt-top-gap,
+.pk-target .pt-bottom-gap{
+    width:100%;
+    background-color:#f5f6fa;
 }

@@ -56,6 +56,8 @@
      * itemStyle 选项样式
      * onChangeEnd 选项已经改变监听
      * onConfirm 确定监听
+     * topGapHeight 头部占位元素高度
+     * bottomGapHeight 底部占位元素高度
      */
     function SimplePicker(config) {
         if (!config || typeof (config) !== 'object') {
@@ -71,6 +73,8 @@
         this.id = 'picker-'+new Date().getTime();
         this.itemHeight = config.itemHeight || 36;
         this.listHeight = config.listHeight || this.itemHeight * 6;
+        this.topGapHeight = config.topGapHeight || 0;
+        this.bottomGapHeight = config.bottomGapHeight || 0;
         this.itemStyle = config.itemStyle || null;
         this.zIndex = config.zIndex || 1000;
         this.headVisible = config.headVisible != null ? config.headVisible : true;
@@ -83,21 +87,37 @@
     SimplePicker.prototype.constructor = function(){
         var html = '';
         html += '<div class="picker-component">';
+
+        //遮罩
         if(this.maskVisible){
             html += '<div class="pk-cover"></div>';
         }
+
         html += '<div class="pk-target">';
+
+        //头部按钮区域
         if(this.headVisible){
             html += '<div class="pt-header"><span class="ph-cancel">取消</span><span class="ph-confirm">确定</span></div>';
         }
+
+        //头部占位元素
+        if(this.topGapHeight>0){
+            html += '<div class="pt-top-gap"></div>';
+        }
+
         html += '<div class="pt-list">';
         html += '<div class="pl-top-cover"></div>';
         html += this.renderCols();
         html += '<div class="pl-bottom-cover"></div>';
         html += '</div>';
-        html += '</div>';
-        html += '</div>';
 
+        //底部占位元素
+        if(this.bottomGapHeight>0){
+            html += '<div class="pt-bottom-gap"></div>';
+        }
+
+        html += '</div>';
+        html += '</div>';
 
         this.$target = document.createElement('div');
         this.$target.id = this.id;
@@ -111,12 +131,28 @@
         this.constructor();
         this.$picker = qs('#'+this.id+' .pk-target');
 
+        //遮罩
         if(this.maskVisible){
             this.$cover = qs('#'+this.id+' .pk-cover');
         }
+
+        //头部按钮区域
         if(this.headVisible){
             this.$cancel = qs('#'+this.id+' .ph-cancel');
             this.$confirm = qs('#'+this.id+' .ph-confirm');
+            this.btnEvent();
+        }
+
+        //头部占位元素
+        if(this.topGapHeight>0){
+            this.$topGap = qs('#'+this.id+' .pt-top-gap');
+            this.$topGap.style.height = this.topGapHeight+'px';
+        }
+
+        //底部占位元素
+        if(this.bottomGapHeight>0){
+            this.$bottomGap = qs('#'+this.id+' .pt-bottom-gap');
+            this.$bottomGap.style.height = this.bottomGapHeight+'px';
         }
 
         //设置选项列表高度
@@ -136,10 +172,6 @@
             var offsetHeight = getIndex(this.default[i], this.data[i]) * this.itemHeight;
             this.setOffset(i,offsetHeight);
             this.moveListener(i,offsetHeight);//初始化滑动监听
-        }
-
-        if(this.headVisible){
-            this.btnEvent();
         }
     };
 

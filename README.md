@@ -2,7 +2,7 @@
 
 移动端滑动选取组件；
 
-因为代码中有涉及`transform`、`transition`属性，因此需要依赖[prefix-umd](https://github.com/newbieYoung/prefix-umd)处理浏览器前缀。
+因为代码中有涉及`transform`、`transition`属性，因此需要依赖 [prefix-umd](https://github.com/newbieYoung/prefix-umd)处理浏览器前缀。
 
 ### 示例一
 
@@ -193,15 +193,15 @@ $picker.show();
     </tr>
     <tr>
         <td>listHeight</td>
-        <td>选项列表高度</td>
+        <td>选项列表高度（单位px）</td>
     </tr>
     <tr>
         <td>topGapHeight</td>
-        <td>顶部占位区域</td>
+        <td>顶部占位区域高度（单位px）</td>
     </tr>
     <tr>
         <td>bottomGapHeight</td>
-        <td>底部占位区域</td>
+        <td>底部占位区域高度（单位px）</td>
     </tr>
     <tr>
         <td>setListHeight()</td>

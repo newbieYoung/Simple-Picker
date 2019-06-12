@@ -103,6 +103,8 @@ $picker.show();
 
 ### 示例二
 
+<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1.jpg"/>
+
 可以扫描二维码体验：
 
 或者访问以下链接：

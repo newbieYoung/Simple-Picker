@@ -167,6 +167,7 @@
         this.$bottomCover.style.height = coverHeight+'px';
 
         //设置默认值偏移
+        this.$colParents = qsa('#'+this.id+' .pl-col');
         this.$cols = qsa('#'+this.id+' .pl-col ul');
         for(var i=0;i<this.data.length;i++){
             var offsetHeight = getIndex(this.default[i], this.data[i]) * this.itemHeight;
@@ -250,14 +251,23 @@
     };
 
     //设置偏移
-    SimplePicker.prototype.setOffset = function(colNo,offsetHeight,isTouchEnd){
-        var time = isTouchEnd ? .5 : 0;
+    SimplePicker.prototype.setOffset = function(colNo,offsetHeight,touchEndDuration){
+        //最长不超过 0.5 秒，最小不小于 0.2 秒
+        var time = touchEndDuration > 0 ? touchEndDuration : 0;
+        if(time>0){
+            if(time>0.5){
+                time = 0.5;
+            }else if(time<0.2){
+                time = 0.2;
+            }
+        }
+
         var el = this.$cols[colNo];
         var translateY = this.listHeight / 2 - this.itemHeight / 2 - offsetHeight;
         el.style[transitionDurationPro] = time+'s';
         el.style[transformProperty] = 'translateY('+translateY+'px)';
 
-        if(isTouchEnd){
+        if(time > 0){
             var lineNo = this.getResult(translateY);
             this.result[colNo] = this.data[colNo][lineNo].value;
             this.onChangeEnd(this.result);
@@ -292,7 +302,7 @@
         var touchStartTime = 0;//触摸开始时间
         var touchMovedY = offsetHeight;//偏移距离，默认为初始偏移距离
         var curColNum = colNo;//当前滑动行序号
-        var element = this.$cols[curColNum];
+        var element = this.$colParents[curColNum];
         var stopInertiaMove = false;//是否停止惯性移动
 
         //触摸开始
@@ -314,46 +324,68 @@
         //触摸结束
         function touchendtHandler (e) {
             var toucheEndY = e.changedTouches[0].pageY;
-            touchMovedY = self.getEndOffset(touchStartY - toucheEndY + touchMovedY);//最终偏移距离
-
-            if (touchMovedY < 0) {
-                touchMovedY = 0;
-                self.setOffset(curColNum, touchMovedY, true);
-                return;
-            }
-            if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
-                touchMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight;
-                self.setOffset(curColNum, touchMovedY, true);
-                return;
-            }
+            touchMovedY = touchStartY - toucheEndY + touchMovedY;//最终偏移距离
 
             //惯性移动
             stopInertiaMove = false;
             var nowTime = new Date().getTime();
-            var vec = (toucheEndY - touchStartY) / (nowTime - touchStartTime); // 惯性滑动平均速度
-            var dir = vec > 0 ? -1 : 1;// 惯性滑动方向
-            var dist = dir * Math.pow(vec,2) * 100 / 2;//惯性移动初始距离
-            function inertiaMove () {
+            var vec = (toucheEndY - touchStartY) / (nowTime - touchStartTime); //惯性滑动平均速度
+            var initVec = vec * 100;//毫秒速度转换为秒速度
+
+            //越界
+            if (touchMovedY < 0) {
+                var duration = Math.abs(touchMovedY / initVec);
+                touchMovedY = 0;
+                self.setOffset(curColNum, touchMovedY, duration);
+                return;
+            }
+            if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
+                var maxMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight;//最大偏移距离
+                var duration = Math.abs((touchMovedY - maxMovedY) / initVec);
+                touchMovedY = maxMovedY;
+                self.setOffset(curColNum, maxMovedY, duration);
+                return;
+            }
+
+            function inertiaMove (curstamp,laststamp) {
                 if (stopInertiaMove) {
                     return;
                 }
-                if (Math.abs(dist) < 0.5) {
+                var dist = vec * (laststamp - curstamp);
+                if (Math.abs(vec) < 0.05) {
+                    //越界
+                    if (touchMovedY < 0) {
+                        var duration = Math.abs(touchMovedY / initVec);
+                        touchMovedY = 0;
+                        self.setOffset(curColNum, touchMovedY, duration);
+                        return;
+                    }
+                    if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
+                        var maxMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight;//最大偏移距离
+                        var duration = Math.abs((touchMovedY - maxMovedY) / initVec);
+                        touchMovedY = maxMovedY;
+                        self.setOffset(curColNum, maxMovedY, duration);
+                        return;
+                    }
+
+                    //回归
+                    var cacheMovedY = touchMovedY;
                     touchMovedY = self.getEndOffset(touchMovedY);
-                    self.setOffset(curColNum, touchMovedY, true);
+                    var duration = Math.abs((touchMovedY - cacheMovedY)/initVec);
+                    self.setOffset(curColNum, touchMovedY, duration);
                     return;
                 }
-                self.setOffset(curColNum, touchMovedY + dist);
-                dist /= 1.1;//惯性移动阻力系数
                 touchMovedY += dist;
-                if (touchMovedY < 0) {
-                    touchMovedY = 0;
-                }
-                if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
-                    touchMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight;
-                }
-                window.requestAnimationFrame(inertiaMove);
+                self.setOffset(curColNum, touchMovedY);
+                vec /= 1.1;//惯性移动阻力系数
+
+                window.requestAnimationFrame(function(timestamp){
+                    inertiaMove(timestamp,curstamp);
+                });
             }
-            inertiaMove();
+            window.requestAnimationFrame(function(timestamp){
+                inertiaMove(timestamp,timestamp)
+            });
         }
 
         off(element, 'touchstart', touchstartHandler);

@@ -1,6 +1,8 @@
 # SimplePicker
 
-移动端滑动选取组件
+移动端滑动选取组件；
+
+因为代码中有涉及`transform`、`transition`属性，因此需要依赖[prefix-umd](https://github.com/newbieYoung/prefix-umd)处理浏览器前缀。
 
 ### 示例一
 
@@ -9,6 +11,8 @@
 可以扫描二维码体验：
 
 或者访问以下链接：
+
+相关样式及示例代码如下：
 
 ```
 <link rel="stylesheet" href="./template0.css"/>
@@ -62,6 +66,8 @@ var $picker = new SimplePicker({
 $picker.show();
 ```
 
+相关参数及函数说明如下：
+
 <table style="word-break: normal;">
 	<tr>
 		<td>参数</td>
@@ -108,6 +114,8 @@ $picker.show();
 可以扫描二维码体验：
 
 或者访问以下链接：
+
+相关样式及示例代码如下：
 
 ```
 <link rel="stylesheet" href="./template0.css"/>
@@ -159,6 +167,8 @@ var $picker = new SimplePicker({
 
 $picker.show();
 ```
+
+相关参数及函数说明如下：
 
 <table style="word-break: normal;">
 	<tr>

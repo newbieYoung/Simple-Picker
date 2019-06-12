@@ -2,7 +2,7 @@
 
 移动端滑动选取组件；
 
-因为代码中有涉及`transform`、`transition`属性，因此需要依赖 [prefix-umd](https://github.com/newbieYoung/prefix-umd)处理浏览器前缀。
+因为代码中有涉及`transform`、`transition`属性，因此需要依赖 [prefix-umd](https://github.com/newbieYoung/prefix-umd) 处理浏览器前缀。
 
 ### 示例一
 

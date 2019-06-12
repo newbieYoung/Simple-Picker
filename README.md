@@ -10,6 +10,8 @@
 
 可以扫描二维码体验：
 
+<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo0-code.jpg"/>
+
 或者访问以下链接：
 
 相关样式及示例代码如下：
@@ -112,6 +114,8 @@ $picker.show();
 <img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1.jpg"/>
 
 可以扫描二维码体验：
+
+<img src="https://github.com/newbieYoung/Simple-Picker/blob/master/img/demo1-code.jpg"/>
 
 或者访问以下链接：
 

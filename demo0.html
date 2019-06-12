@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="./reset.css"/>
 </head>
 <body>
-    <script src="./node_modules/prefix-umd/index.js"></script>
+    <script src="./lib/prefix-umd.js"></script>
     <script src="./index.js"></script>
     <script>
-        (function() {
+        window.onload = function(){
             var dataset = [];
             //加入月份
             dataset.push([]);
@@ -56,7 +56,7 @@
             })
 
             $picker.show();
-        })();
+        }
     </script>
 </body>
 </html>

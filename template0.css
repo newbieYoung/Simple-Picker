@@ -28,12 +28,10 @@
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
     transition: .5s;
-    visibility: hidden;
 }
 .pk-target.pc-show {
     -webkit-transform: translateY(0);
     transform: translateY(0);
-    visibility: visible;
 }
 
 .pk-target .pt-header {

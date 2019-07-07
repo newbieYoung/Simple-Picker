@@ -252,13 +252,15 @@
 
     //设置偏移
     SimplePicker.prototype.setOffset = function(colNo,offsetHeight,touchEndDuration){
-        //最长不超过 0.5 秒，最小不小于 0.2 秒
+        //过渡时长最长不超过 0.4 秒，最短不小于 0.2 秒
+        var minDuration = 0.2;
+        var maxDuration = 0.4;
         var time = touchEndDuration > 0 ? touchEndDuration : 0;
         if(time>0){
-            if(time>0.5){
-                time = 0.5;
-            }else if(time<0.2){
-                time = 0.2;
+            if(time>maxDuration){
+                time = maxDuration;
+            }else if(time<minDuration){
+                time = minDuration;
             }
         }
 

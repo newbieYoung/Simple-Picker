@@ -381,11 +381,11 @@
                 self.setOffset(curColNum, touchMovedY);
                 vec /= 1.1;//惯性移动阻力系数
 
-                window.requestAnimationFrame(function(timestamp){
+                window.requestAnimFrame(function(timestamp){
                     inertiaMove(timestamp,curstamp);
                 });
             }
-            window.requestAnimationFrame(function(timestamp){
+            window.requestAnimFrame(function(timestamp){
                 inertiaMove(timestamp,timestamp)
             });
         }

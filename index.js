@@ -61,7 +61,7 @@
      */
     function SimplePicker(config) {
         if (!config || typeof (config) !== 'object') {
-            console.error('配置文件有误');
+            console.error('参数异常');
             return;
         }
         this.data = config.data;

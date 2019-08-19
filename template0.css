@@ -1,7 +1,9 @@
-.picker-component{}
+.picker-component {
+    font-size: 16px;
+}
 
 /* 遮罩 */
-.picker-component .pk-cover{
+.picker-component .pk-cover {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +14,8 @@
     opacity: 0;
     transition: .6s;
 }
-.pk-cover.pc-show{
+
+.pk-cover.pc-show {
     visibility: visible;
     opacity: .5;
 }
@@ -29,6 +32,7 @@
     transform: translateY(100%);
     transition: .5s;
 }
+
 .pk-target.pc-show {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -43,35 +47,41 @@
     font-size: 17px;
     border-bottom: 1px solid #EBEDF5;
 }
+
 .pk-target .pt-header .ph-cancel {
     position: absolute;
     top: 0;
     left: 16px;
 }
+
 .pk-target .pt-header .ph-confirm {
     position: absolute;
     top: 0;
     right: 16px;
 }
+
 .pk-target .pt-list {
     position: relative;
     height: 216px;
     overflow: hidden;
-    display:flex;
+    display: flex;
 }
-.pk-target .pt-list .pl-col{
-    flex:1;
+
+.pk-target .pt-list .pl-col {
+    flex: 1;
     height: 100%;
     position: relative;
 }
-.pk-target .pt-list .pl-col ul{
-    margin:0;
-    padding:0;
+
+.pk-target .pt-list .pl-col ul {
+    margin: 0;
+    padding: 0;
     list-style: none;
     transition-property: transform;
     transition-timing-function: ease-out;
 }
-.pk-target .pt-list .pl-col ul li{
+
+.pk-target .pt-list .pl-col ul li {
     height: 36px;
     line-height: 36px;
     box-sizing: border-box;
@@ -80,26 +90,30 @@
     width: 100%;
     text-align: center;
 }
+
 .pk-target .pt-list .pl-top-cover,
-.pk-target .pt-list .pl-bottom-cover{
+.pk-target .pt-list .pl-bottom-cover {
     position: absolute;
     left: 0;
     width: 100%;
     z-index: 10;
     pointer-events: none
 }
-.pk-target .pt-list .pl-top-cover{
+
+.pk-target .pt-list .pl-top-cover {
     top: 0;
     background: -webkit-linear-gradient(top, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6));
     background: linear-gradient(top, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6));
 }
+
 .pk-target .pt-list .pl-bottom-cover {
     bottom: 0;
     background: -webkit-linear-gradient(bottom, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6));
     background: linear-gradient(bottom, rgba(243, 244, 250, 0.8), rgba(239, 240, 248, 0.6))
 }
+
 .pk-target .pt-top-gap,
-.pk-target .pt-bottom-gap{
-    width:100%;
-    background-color:#f5f6fa;
+.pk-target .pt-bottom-gap {
+    width: 100%;
+    background-color: #f5f6fa;
 }

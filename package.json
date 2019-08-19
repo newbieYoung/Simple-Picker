@@ -1,6 +1,6 @@
 {
   "name": "simple-picker-m",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/newbieYoung/Simple-Picker#readme",
   "dependencies": {
     "prefix-umd": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.0"
   }
 }

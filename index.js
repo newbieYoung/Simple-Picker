@@ -51,6 +51,8 @@
 
     /**
      * data 数据
+     * zIndex 组件层级
+     * position 组件定位
      * default 默认值
      * result 选取值
      * headVisible 是否显示头部按钮区域
@@ -81,6 +83,7 @@
         this.bottomGapHeight = config.bottomGapHeight || 0;
         this.itemStyle = config.itemStyle || null;
         this.zIndex = config.zIndex || 1000;
+        this.position = config.position || 'relative';
         this.headVisible = config.headVisible != null ? config.headVisible : true;
         this.maskVisible = config.maskVisible != null ? config.maskVisible : true;
 

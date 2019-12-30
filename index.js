@@ -129,6 +129,7 @@
         this.$target = document.createElement('div');
         this.$target.id = this.id;
         this.$target.style.zIndex = this.zIndex;
+        this.$target.style.position = this.position;
         this.$target.innerHTML = html;
         document.body.appendChild(this.$target);
     };

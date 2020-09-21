@@ -20,6 +20,8 @@
     "prefix-umd": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.2.0"
+    "eslint": "^6.2.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   }
 }

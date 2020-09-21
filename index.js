@@ -1,3 +1,4 @@
+/* global define module require */
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -76,7 +77,8 @@
         this.onChangeEnd = config.onChangeEnd || function () {};
         this.onConfirm = config.onConfirm || function () {};
 
-        this.id = 'picker-' + new Date().getTime();
+        this._id = config.id ? config.id : '';
+        this.id = this._id + '-picker-' + new Date().getTime(); // 使用当前时间毫秒数充当 id，在同时创建时可能无法区分
         this.itemHeight = config.itemHeight || 36;
         this.listHeight = config.listHeight || this.itemHeight * 6;
         this.topGapHeight = config.topGapHeight || 0;
@@ -188,22 +190,23 @@
     SimplePicker.prototype.renderCols = function () {
         var html = '';
         var cssTexts = [];
+        var i, j;
         if (this.itemStyle) {
-            for (var i = 0; i < this.itemStyle.length; i++) {
+            for (i = 0; i < this.itemStyle.length; i++) {
                 cssTexts[i] = '';
                 var styles = this.itemStyle[i];
-                for (var j = 0; j < styles.length; j++) {
+                for (j = 0; j < styles.length; j++) {
                     cssTexts[i] += styles[j].property + ':' + styles[j].value + ';';
                 }
             }
         }
 
-        for (var i = 0; i < this.data.length; i++) {
+        for (i = 0; i < this.data.length; i++) {
             var col = this.data[i];
             var cssText = cssTexts[i] || '';
             html += '<div class="pl-col">';
             html += '<ul>';
-            for (var j = 0; j < col.length; j++) {
+            for (j = 0; j < col.length; j++) {
                 html += '<li style="' + cssText + '">' + col[j].title + '</li>'
             }
             html += '</ul>';
@@ -341,17 +344,18 @@
             var nowTime = new Date().getTime();
             var vec = (toucheEndY - touchStartY) / (nowTime - touchStartTime); //惯性滑动平均速度
             var initVec = vec * 100; //毫秒速度转换为秒速度
+            var duration;
 
             //越界
             if (touchMovedY < 0) {
-                var duration = Math.abs(touchMovedY / initVec);
+                duration = Math.abs(touchMovedY / initVec);
                 touchMovedY = 0;
                 self.setOffset(curColNum, touchMovedY, duration);
                 return;
             }
             if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
                 var maxMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight; //最大偏移距离
-                var duration = Math.abs((touchMovedY - maxMovedY) / initVec);
+                duration = Math.abs((touchMovedY - maxMovedY) / initVec);
                 touchMovedY = maxMovedY;
                 self.setOffset(curColNum, maxMovedY, duration);
                 return;
@@ -372,7 +376,7 @@
                     }
                     if (touchMovedY > self.data[curColNum].length * self.itemHeight - self.itemHeight) {
                         var maxMovedY = self.data[curColNum].length * self.itemHeight - self.itemHeight; //最大偏移距离
-                        var duration = Math.abs((touchMovedY - maxMovedY) / initVec);
+                        duration = Math.abs((touchMovedY - maxMovedY) / initVec);
                         touchMovedY = maxMovedY;
                         self.setOffset(curColNum, maxMovedY, duration);
                         return;
@@ -381,7 +385,7 @@
                     //回归
                     var cacheMovedY = touchMovedY;
                     touchMovedY = self.getEndOffset(touchMovedY);
-                    var duration = Math.abs((touchMovedY - cacheMovedY) / initVec);
+                    duration = Math.abs((touchMovedY - cacheMovedY) / initVec);
                     self.setOffset(curColNum, touchMovedY, duration);
                     return;
                 }

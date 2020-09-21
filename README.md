@@ -2,8 +2,6 @@
 
 移动端滑动选取组件；
 
-因为代码中有涉及`transform`、`transition`属性，因此需要依赖 [prefix-umd](https://github.com/newbieYoung/prefix-umd) 处理浏览器前缀。
-
 ### 示例一
 
 <img src="https://raw.githubusercontent.com/newbieYoung/Simple-Picker/master/img/demo0.jpg">
@@ -14,13 +12,12 @@
 
 或者访问以下链接：
 
-[https://newbieyoung.github.io/Simple-Picker/demo0.html](https://newbieyoung.github.io/Simple-Picker/demo0.html)
+[https://newbieyoung.github.io/Simple-Picker/examples/demo0.html](https://newbieyoung.github.io/Simple-Picker/examples/demo0.html)
 
 相关样式及示例代码如下：
 
 ```
-<link rel="stylesheet" href="./template0.css"/>
-<link rel="stylesheet" href="./reset.css"/>
+<link rel="stylesheet" href="../template0.css"/>
 ```
 
 ```
@@ -121,13 +118,12 @@ $picker.show();
 
 或者访问以下链接：
 
-[https://newbieyoung.github.io/Simple-Picker/demo1.html](https://newbieyoung.github.io/Simple-Picker/demo1.html)
+[https://newbieyoung.github.io/Simple-Picker/examples/demo1.html](https://newbieyoung.github.io/Simple-Picker/examples/demo1.html)
 
 相关样式及示例代码如下：
 
 ```
 <link rel="stylesheet" href="./template0.css"/>
-<link rel="stylesheet" href="./reset.css"/>
 ```
 
 ```
